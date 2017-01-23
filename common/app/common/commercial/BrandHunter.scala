@@ -1,5 +1,6 @@
 package common.commercial
 
+import com.gu.commercial.branding
 import common.Edition
 import model.{ContentType, MetaData, Tags, Trail}
 import org.joda.time.DateTime
@@ -30,11 +31,6 @@ object BrandHunter {
     }.headOption
 
     brandingByTags orElse brandingBySection
-  }
-
-  def findContentBranding(content: ContentType, edition: Edition): Option[Branding] = {
-    if (content.commercial.isInappropriateForSponsorship) None
-    else findBranding(content.metadata, content.tags, edition, Some(content.trail.webPublicationDate))
   }
 
   /*

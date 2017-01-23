@@ -52,7 +52,8 @@ object Frontend extends Build with Prototypes {
       kinesisLogbackAppender,
       targetingClient,
       scanamo,
-      scalaUri
+      scalaUri,
+      commercialShared
     )
   ).settings(
       mappings in TestAssets ~= filterAssets
