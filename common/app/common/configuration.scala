@@ -151,6 +151,7 @@ class GuardianConfiguration extends Logging {
 
     lazy val isProd = stage.equalsIgnoreCase("prod")
     lazy val isCode = stage.equalsIgnoreCase("code")
+    lazy val isDevInfra = stage.equalsIgnoreCase("DEVINFRA")
     lazy val isNonProd = List("dev", "code", "gudev").contains(stage.toLowerCase)
   }
 
@@ -320,7 +321,7 @@ class GuardianConfiguration extends Logging {
     // If true in dev, assets are locally loaded from the `hash` build output, otherwise assets come from 'target' for css, and 'src' for js.
     lazy val useHashedBundles =  configuration.getStringProperty("assets.useHashedBundles")
       .map(_.toBoolean)
-      .getOrElse(environment.isProd || environment.isCode)
+      .getOrElse(environment.isProd || environment.isCode || environment.isDevInfra )
   }
 
   object staticSport {
